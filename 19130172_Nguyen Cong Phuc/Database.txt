@@ -1,0 +1,21 @@
+CREATE DATABASE THUCANNHANH;
+USE THUCANNHANH;
+
+CREATE TABLE CHITIETMONAN(
+ID INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+PHANLOAI VARCHAR(255),
+TENMONAN VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+GIOITHIEU VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+HINHANH VARCHAR(255),
+GIA DOUBLE
+);
+
+INSERT INTO CHITIETMONAN(TENMONAN, PHANLOAI, GIOITHIEU, HINHANH, GIA) VALUES('Burger loại 1','burger', 'Đây là nội dung giới thiệu chung dành cho Burger loại 1', 'assets/images/f2.png','1000');
+INSERT INTO CHITIETMONAN(TENMONAN, PHANLOAI, GIOITHIEU, HINHANH, GIA) VALUES('Burger loại 2','burger', 'Đây là nội dung giới thiệu chung dành cho Burger loại 2', 'assets/images/f7.png','2000');
+INSERT INTO CHITIETMONAN(TENMONAN, PHANLOAI, GIOITHIEU, HINHANH, GIA) VALUES('Burger loại 3','burger', 'Đây là nội dung giới thiệu chung dành cho Burger loại 3', 'assets/images/f8.png','1000');
+INSERT INTO CHITIETMONAN(TENMONAN, PHANLOAI, GIOITHIEU, HINHANH, GIA) VALUES('Pizza loại 1', 'pizza', 'Đây là nội dung giới thiệu chung dành cho Pizza loại 1', 'assets/images/f1.png','2000');
+INSERT INTO CHITIETMONAN(TENMONAN, PHANLOAI, GIOITHIEU, HINHANH, GIA) VALUES('Pizza loại 2', 'pizza', 'Đây là nội dung giới thiệu chung dành cho Pizza loại 2', 'assets/images/f3.png','1000');
+INSERT INTO CHITIETMONAN(TENMONAN, PHANLOAI, GIOITHIEU, HINHANH, GIA) VALUES('Pizza loại 3', 'pizza', 'Đây là nội dung giới thiệu chung dành cho Pizza loại 3', 'assets/images/f6.png','2000');
+INSERT INTO CHITIETMONAN(TENMONAN, PHANLOAI, GIOITHIEU, HINHANH, GIA) VALUES('Pasta loại 1', 'pasta', 'Đây là nội dung giới thiệu chung dành cho Pasta loại 1', 'assets/images/f4.png','1000');
+INSERT INTO CHITIETMONAN(TENMONAN, PHANLOAI, GIOITHIEU, HINHANH, GIA) VALUES('Pasta loại 2', 'pasta', 'Đây là nội dung giới thiệu chung dành cho Pasta loại 2', 'assets/images/f9.png','2000');
+INSERT INTO CHITIETMONAN(TENMONAN, PHANLOAI, GIOITHIEU, HINHANH, GIA) VALUES('Khoai tây chiên', 'fries', 'Đây là nội dung giới thiệu chung dành cho khoai tây chiên', 'assets/images/f5.png','1000');
