@@ -1,4 +1,7 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.search.bean.DishDetails" %>
+<%@ page import="com.example.search.service.DishDetailsService" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: NCP
   Date: 6/23/2022
@@ -6,6 +9,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
 
 <section class="food_section layout_padding">
     <div class="container">
@@ -23,244 +28,66 @@
             <li data-filter=".fries">Khoai tây chiên</li>
         </ul>
 
-        <div class="col-md-9 col-xl-8 ml-auto mr-auto">
-            <form>
-                <div class="align-items-center form-row">
-                    <div class="form-group col-sm"><input type="text" class="form-control form-control pl-4 pr-4 rounded-pill" name="search" placeholder="Tìm kiếm..." /></div>
-                    <div class="form-group col-sm-auto text-right"><button class="btn btn-primary pl-4 pr-4 rounded-pill" type="submit"><i class="fa fa-search"></i></button></div>
-                </div>
-            </form>
-        </div>
+        <form action="menu" method="post">
+            <div class="col-md-9 col-xl-8 ml-auto mr-auto">
+                <form>
+                    <div class="align-items-center form-row">
+                        <div class="form-group col-sm keyword"><input type="text"
+                                                                      class="form-control form-control pl-4 pr-4 rounded-pill"
+                                                                      name="search"
+                                                                      placeholder="Tìm kiếm..."
+                                                                      value="${requestScope.valueInput}"/>
+                        </div>
+                        <div class="form-group col-sm-auto text-right">
+                            <button class="btn btn-primary pl-4 pr-4 rounded-pill seatchItem" type="submit"><i
+                                    class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-        <div class="filters-content">
-            <div class="row grid">
-                <div class="col-sm-6 col-lg-4 all pizza">
-                    <div class="box">
-                        <div>
-                            <div class="img-box">
-                                <img src="assets/images/f1.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Delicious Pizza
-                                </h5>
-                                <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
-                                </p>
-                                <div class="options">
-                                    <h6>
-                                        $20
-                                    </h6>
-                                    <a href="" class="add_to_cart">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </a>
+            <div class="filters-content">
+                <div class="row grid">
+                    <%
+                        String error = (String) session.getAttribute("error");
+                    %>
+
+                    <% if (error == null) { %>
+                    <jsp:useBean id="dishs" scope="request" type="java.util.List<com.example.search.bean.DishDetails>"/>
+                    <c:forEach var="dish" items="${dishs}">
+                        <div class="col-sm-6 col-lg-4 all ${dish.getClassify()}">
+                            <div class="box">
+                                <div>
+                                    <div class="img-box">
+                                        <img src=
+                                                 <c:url value="${dish.getImageUrl()}"/> alt="">
+                                    </div>
+                                    <div class="detail-box">
+                                        <h5>
+                                                ${dish.getName()}
+                                        </h5>
+                                        <p>
+                                                ${dish.getIntroduce()}
+                                        </p>
+                                        <div class="options">
+                                            <h6>
+                                                    ${dish.getPrice()}
+                                            </h6>
+                                            <a href="" class="add_to_cart">
+                                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 all burger">
-                    <div class="box">
-                        <div>
-                            <div class="img-box">
-                                <img src="assets/images/f2.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Delicious Burger
-                                </h5>
-                                <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
-                                </p>
-                                <div class="options">
-                                    <h6>
-                                        $15
-                                    </h6>
-                                    <a href="" class="add_to_cart">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 all pizza">
-                    <div class="box">
-                        <div>
-                            <div class="img-box">
-                                <img src="assets/images/f3.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Delicious Pizza
-                                </h5>
-                                <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
-                                </p>
-                                <div class="options">
-                                    <h6>
-                                        $17
-                                    </h6>
-                                    <a href="" class="add_to_cart">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 all pasta">
-                    <div class="box">
-                        <div>
-                            <div class="img-box">
-                                <img src="assets/images/f4.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Delicious Pasta
-                                </h5>
-                                <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
-                                </p>
-                                <div class="options">
-                                    <h6>
-                                        $18
-                                    </h6>
-                                    <a href="" class="add_to_cart">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 all fries">
-                    <div class="box">
-                        <div>
-                            <div class="img-box">
-                                <img src="assets/images/f5.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    French Fries
-                                </h5>
-                                <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
-                                </p>
-                                <div class="options">
-                                    <h6>
-                                        $10
-                                    </h6>
-                                    <a href="" class="add_to_cart">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 all pizza">
-                    <div class="box">
-                        <div>
-                            <div class="img-box">
-                                <img src="assets/images/f6.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Delicious Pizza
-                                </h5>
-                                <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
-                                </p>
-                                <div class="options">
-                                    <h6>
-                                        $15
-                                    </h6>
-                                    <a href="" class="add_to_cart">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 all burger">
-                    <div class="box">
-                        <div>
-                            <div class="img-box">
-                                <img src="assets/images/f7.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Tasty Burger
-                                </h5>
-                                <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
-                                </p>
-                                <div class="options">
-                                    <h6>
-                                        $12
-                                    </h6>
-                                    <a href="" class="add_to_cart">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 all burger">
-                    <div class="box">
-                        <div>
-                            <div class="img-box">
-                                <img src="assets/images/f8.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Tasty Burger
-                                </h5>
-                                <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
-                                </p>
-                                <div class="options">
-                                    <h6>
-                                        $14
-                                    </h6>
-                                    <a href="" class="add_to_cart">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 all pasta">
-                    <div class="box">
-                        <div>
-                            <div class="img-box">
-                                <img src="assets/images/f9.png" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h5>
-                                    Delicious Pasta
-                                </h5>
-                                <p>
-                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
-                                </p>
-                                <div class="options">
-                                    <h6>
-                                        $10
-                                    </h6>
-                                    <a href="" class="add_to_cart">
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
+                    <% } else {%>
+                    <h2 style="margin: auto;"><%=error%></h2>
+                    <% }; %>
                 </div>
             </div>
-        </div>
+        </form>
         <div class="btn-box">
             <a href="">
                 Xem thêm
